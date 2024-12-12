@@ -8,7 +8,7 @@ window.addEventListener("load", getData);
 async function getData() {
     const response = await fetch("https://opentdb.com/api.php?amount=10&category=18&difficulty=easy&type=multiple&encode=url3986");
     const quizData = await response.json();
-
+    console.log(quizData);
     // Call displayData and pass quizData
     displayData(quizData);
 }
@@ -16,7 +16,7 @@ async function getData() {
 questionsList.innerHTML = "";
 
 
-// This function retrieves ID of each question
+// This function retrieves questions, decodes them and displays in the dom
 function displayData(quizData) {
     for (let question of quizData.results) {
         // Decode Questions
@@ -30,6 +30,22 @@ function displayData(quizData) {
      
              // Append the list item to the DOM
              questionsList.appendChild(questionItem);
+    }
+}
+
+/*plan 1
+0. put correct answer(correct_answer) into array of incorrect answers (incorrect_answers)
+1. select multi-choice answers
+2. display each under each question
+*/
+
+function multipleChoice (quizData) {
+    for (let element of quizData.results) {
+    const answers = decodeURIComponent(element.incorrect_answers);
+    const correct = decodeURIComponent(element.correct_answer);
+    const optionalChoice = answers + correct;
+    console.log(optionalChoice);
+
     }
 }
 
