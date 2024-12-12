@@ -1,3 +1,7 @@
+
+const questionsList = document.getElementById("questionsList")
+
+
 // Fetch is made upon page loading
 window.addEventListener("load", getData);
 
@@ -9,11 +13,31 @@ async function getData() {
     displayData(quizData);
 }
 
+questionsList.innerHTML = "";
+
+
 // This function retrieves ID of each question
 function displayData(quizData) {
     for (let question of quizData.results) {
         // Decode Questions
         const decodeQuestions = decodeURIComponent(question.question);
-        console.log(decodeQuestions);  
+
+             // Create a list item
+             let questionItem = document.createElement("li");
+
+             // Set the text content to the decoded question
+             questionItem.textContent = decodeQuestions;
+     
+             // Append the list item to the DOM
+             questionsList.appendChild(questionItem);
     }
 }
+
+// async function List(quizData){
+//     let questionList = document.createElement("li");
+//     questionList.textContent = quizData;
+//     document.body.appendChild(questionList)
+// }
+
+
+
