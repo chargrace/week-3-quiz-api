@@ -24,26 +24,36 @@ async function getData() {
 // This function retrieves questions and displays them with multiple-choice answers
 function displayData(quizData) {
     questionsList.innerHTML = ""; // Clear any existing questions
-    for (let question of quizData.results) {
-        // Decode the question and answers
+    quizData.results.forEach((question, index) => {
         const decodedQuestion = decodeURIComponent(question.question);
         const decodedCorrectAnswer = decodeURIComponent(question.correct_answer);
         const decodedIncorrectAnswers = question.incorrect_answers.map((answer) => decodeURIComponent(answer));
+
         // Combine all answers and shuffle them
-        const allAnswers = [...decodedIncorrectAnswers, decodedCorrectAnswer].sort(() => Math.random() - 0.5);
-        // Create a list item for the question
-        const questionItem = document.createElement("li");
-        questionItem.textContent = decodedQuestion;
-        // Create a sublist for the answers
-        const answersList = document.createElement("ul");
-        allAnswers.forEach((answer) => {
-            const answerItem = document.createElement("li");
-            answerItem.textContent = answer;
-            answersList.appendChild(answerItem);
-        });
-        // Append the answers to the question item
-        questionItem.appendChild(answersList);
-        // Add the question item to the main questions list
-        questionsList.appendChild(questionItem);
-    }
-}
+         const allAnswers = [...decodedIncorrectAnswers, decodedCorrectAnswer].sort(() => Math.random() - 0.5);
+
+         // Create a list item for the question
+         const questionItem = document.createElement("li");
+         questionItem.textContent = decodedQuestion;
+ 
+         // Create a sublist for the answers in the DOM
+         const answersList = document.createElement("div");
+         allAnswers.forEach((answer) => {
+             const answerItem = document.createElement("label");
+             const radioButton = document.createElement("input");
+            //  allows user to only choose one
+             radioButton.type = "radio";
+             radioButton.name = `question-${index}`;
+             radioButton.value = answer;
+ 
+             answerItem.appendChild(radioButton);
+             answerItem.appendChild(document.createTextNode(answer));
+             answersList.appendChild(answerItem);
+             answersList.appendChild(document.createElement("br"));
+         });
+ 
+         // Append the answers to the question item
+         questionItem.appendChild(answersList);
+         questionsList.appendChild(questionItem);
+     });
+ }
