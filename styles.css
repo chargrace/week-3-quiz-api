@@ -1,150 +1,102 @@
-/* General body styling */
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f4f4f9; /* Light gray background for the body */
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    height: 100vh;
-    text-align: center;
+  font-family: "Arial", sans-serif;
+  background-color: #f4f4f9;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: auto;
+  text-align: center;
 }
 
 /* Centered quiz container */
 #quizContainer {
-    width: 90%;
-    max-width: 800px;
-    background-color: #ffffff;
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-    text-align: center;
+  width: 90%;
+  max-width: 800px;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
 }
 
-/* Title Styling */
 h1 {
-    font-size: 2.5em;
-    color: #333;
-    margin-bottom: 20px;
-}
-
-/* Science Quiz Image */
-#quizContainer img {
-    width: 100%;
-    max-width: 500px;
-    margin: 20px 0;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-size: 2.5em;
+  color: #333;
+  margin-bottom: 20px;
 }
 
 /* Style for the question list */
 #questionsList {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 /* Each question styling */
 #questionsList li {
-    padding: 20px;
-    background-color: #f9f9f9;
-    margin: 15px 0;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-    font-size: 1.25em;
-    color: #333;
-    transition: all 0.3s ease;
+  padding: 20px;
+  background-color: #f9f9f9;
+  margin: 15px 0;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  font-size: 1.25em;
+  color: #333;
+  transition: all 0.3s ease;
 }
 
 /* Hover effect for questions */
 #questionsList li:hover {
-    background-color: #f1f1f1;
+  background-color: #f1f1f1;
 }
 
 /* Styling for answers container */
 #questionsList div {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
 }
 
 /* Style for each answer option */
 #questionsList div label {
-    padding: 12px;
-    background-color: #e3f2fd;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 1.1em;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 12px;
+  background-color: #e3f2fd;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1.1em;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 /* Hover effect for answer options */
 #questionsList div label:hover {
-    background-color: #b3e5fc;
-    transform: scale(1.05);
+  background-color: #b3e5fc;
+  transform: scale(1.05);
 }
 
-/* Selected answer option styling */
-#questionsList div input[type="radio"]:checked + label {
-    background-color: #c8e6c9; /* Light green for selected answers */
-    color: white;
-    font-weight: bold;
-    border-left: 5px solid #388e3c;
-}
-
-/* Correct answer styling */
-.correct {
-    background-color: #4caf50; /* Green for correct answers */
-    color: white;
-}
-
-/* Incorrect answer styling */
-.incorrect {
-    background-color: #f44336; /* Red for incorrect answers */
-    color: white;
-}
-
-/* Button to start the quiz */
-.start-btn {
-    background-color: #ff9800;
-    color: white;
-    border: none;
-    padding: 15px 25px;
-    font-size: 1.2em;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    margin-bottom: 20px;
-}
-
-.start-btn:hover {
-    background-color: #e68900;
-}
-
-/* Responsive Design for smaller screens */
+/* Responsive so we can demo alongside our presentation */
 @media (max-width: 600px) {
-    body {
-        font-size: 14px;
-    }
+  body {
+    font-size: 14px;
+  }
 
-    #quizContainer {
-        width: 100%;
-        padding: 10px;
-    }
+  #quizContainer {
+    width: 100%;
+    padding: 10px;
+  }
 
-    #questionsList li {
-        font-size: 1.1em;
-    }
+  #questionsList li {
+    font-size: 1.1em;
+  }
 
-    .start-btn {
-        padding: 10px 20px;
-        font-size: 1em;
-    }
+  .start-btn {
+    padding: 10px 20px;
+    font-size: 1em;
+  }
 }
