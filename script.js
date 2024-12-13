@@ -56,6 +56,7 @@ function displayData(quizData) {
 
   const checkButton = document.createElement("button");
   checkButton.textContent = "Check Answers";
+  checkButton.className = "submitButton";
   checkButton.addEventListener("click", () => checkAnswers(quizData));
   questionsList.appendChild(checkButton);
 }
