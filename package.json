@@ -1,0 +1,20 @@
+{
+  "name": "week-3-quiz-api",
+  "version": "1.0.0",
+  "description": "A hands-on exercise to practice working with APIs and DOM manipulation.",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chargrace/week-3-quiz-api.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chargrace/week-3-quiz-api/issues"
+  },
+  "homepage": "https://github.com/chargrace/week-3-quiz-api#readme"
+}
