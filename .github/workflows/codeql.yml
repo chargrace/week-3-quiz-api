@@ -1,0 +1,88 @@
+name: "API Security & CodeQL Analysis for JavaScript"
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  schedule:
+    - cron: '32 5 * * 1'
+
+jobs:
+  analyze:
+    name: Analyze JavaScript API Code
+    runs-on: ubuntu-latest
+    permissions:
+      security-events: write
+      packages: read
+      actions: read
+      contents: read
+
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - language: javascript-typescript
+            build-mode: none
+
+    steps:
+      # Checkout the repository
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Cache Node.js dependencies
+      - name: Cache Node.js modules
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      # Install dependencies
+      - name: Install Dependencies
+        run: |
+          npm install
+
+      # Run Tests
+      - name: Run Tests
+        run: |
+          npm test
+        env:
+          CI: true
+
+      # Initialize CodeQL
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          languages: ${{ matrix.language }}
+          build-mode: ${{ matrix.build-mode }}
+
+      # Perform CodeQL Analysis
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v3
+        with:
+          category: "/language:${{matrix.language}}"
+
+      # Run ESLint for JavaScript code quality
+      - name: Run ESLint
+        uses: eslint/actions@v1
+        with:
+          args: --max-warnings=0  # Fail the job if there are warnings
+
+      # Optional: Security Headers Check (for APIs)
+      - name: Security Headers Check
+        uses: securityheaders/scan@v1
+        with:
+          url: 'https://your-api-url.com'
+
+      # Optional: Dependabot Update check
+      - name: Dependabot security update
+        uses: dependabot/fetch-metadata-action@v1
+
+      # Optional: Secrets scanning (to prevent exposing sensitive data)
+      - name: Secrets Scanning
+        uses: github/codeql-action/scan@v3
+        with:
+          results: true
+
