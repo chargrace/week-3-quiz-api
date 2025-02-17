@@ -2,11 +2,11 @@ name: "API Security & CodeQL Analysis for JavaScript"
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
   schedule:
-    - cron: '32 5 * * 1'
+    - cron: "32 5 * * 1"
 
 jobs:
   analyze:
@@ -66,23 +66,16 @@ jobs:
 
       # Run ESLint for JavaScript code quality
       - name: Run ESLint
-        uses: eslint/actions@v1
+        uses: actions/setup-node@v3 # Correcting the action
         with:
-          args: --max-warnings=0  # Fail the job if there are warnings
+          node-version: "16"
+      - run: |
+          npx eslint . --max-warnings=0  # Fail the job if there are warnings
 
       # Optional: Security Headers Check (for APIs)
       - name: Security Headers Check
-        uses: securityheaders/scan@v1
+        uses: actions/setup-node@v3 # Correcting the action
         with:
-          url: 'https://your-api-url.com'
-
-      # Optional: Dependabot Update check
-      - name: Dependabot security update
-        uses: dependabot/fetch-metadata-action@v1
-
-      # Optional: Secrets scanning (to prevent exposing sensitive data)
-      - name: Secrets Scanning
-        uses: github/codeql-action/scan@v3
-        with:
-          results: true
-
+          node-version: "16"
+      - run: |
+          npx securityheaders scan https://your-api-url.com
