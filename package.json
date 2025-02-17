@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/chargrace/week-3-quiz-api/issues"
   },
-  "homepage": "https://github.com/chargrace/week-3-quiz-api#readme"
+  "homepage": "https://github.com/chargrace/week-3-quiz-api#readme",
+  "devDependencies": {
+    "vite": "^6.1.0"
+  }
 }
