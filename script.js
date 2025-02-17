@@ -12,7 +12,7 @@ async function getData() {
 }
 
 function displayData(quizData) {
-  questionsList.innerHTML = ""; // Clear any existing questions
+  questionsList.textContent = ""; // Clear any existing questions
   quizData.results.forEach((question, index) => {
     const decodedQuestion = decodeURIComponent(question.question);
     const decodedCorrectAnswer = decodeURIComponent(question.correct_answer);
@@ -27,7 +27,7 @@ function displayData(quizData) {
 
     // Create a list item for the question
     const questionItem = document.createElement("li");
-    questionItem.innerHTML = `<strong>${decodedQuestion}</strong>`;
+    questionItem.textContent = `${decodedQuestion}`;
 
     // Create a sublist for the answers to fit within the DOM
     const answersList = document.createElement("div");
